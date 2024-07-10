@@ -14,7 +14,6 @@ void bubble_sort(int arr[], int size) {
             if (arr[j + 1] < arr[j]) {
                 swap(&arr[j + 1], &arr[j]);
             }
-            
         }
     }
 }
