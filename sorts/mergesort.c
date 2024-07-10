@@ -1,8 +1,6 @@
 #include <stdio.h>
 
-void merge(int arr[], int left, int right) {
-    int temp[right + 1];
-
+void merge(int arr[], int left, int right, int temp[]) {
     for (int i = left; i <= right; i++) {
         temp[i] = arr[i];    
     }
@@ -34,12 +32,12 @@ void merge(int arr[], int left, int right) {
     
 }
 
-void merge_sort(int arr[], int left, int right) {
+void merge_sort(int arr[], int left, int right, int temp[]) {
     if (left < right) {
         int middle = (left + right)/2;
-        merge_sort(arr, left, middle);
-        merge_sort(arr, middle + 1, right);
-        merge(arr, left, right);
+        merge_sort(arr, left, middle, temp);
+        merge_sort(arr, middle + 1, right, temp);
+        merge(arr, left, right, temp);
     }
     
 }
@@ -55,7 +53,8 @@ void print_array(int arr[], int size) {
 int main() {
     int arr[] = {64, 35, 78, 12, 91, 84, 85, 32, 67};
     int size = sizeof(arr)/sizeof(arr[0]);
-    merge_sort(arr, 0, size - 1);
+    int temp[size];
+    merge_sort(arr, 0, size - 1, temp);
     print_array(arr, size);
 
     return 0;
