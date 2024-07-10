@@ -23,7 +23,6 @@ void merge(int arr[], int left, int right, int temp[]) {
             arr[curr] = temp[i1++];
         }
         
-        
         else {
             arr[curr] = temp[i2++];
         }
