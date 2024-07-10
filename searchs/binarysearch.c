@@ -20,7 +20,6 @@ void binary_search_1(int arr[], int left, int right, int number) {
 
     printf("The number %d doesn't exists in this array!\n", number);
     return;
-    
 }
 
 void binary_search_2(int arr[], int left, int right, int number) {
