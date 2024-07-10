@@ -22,7 +22,7 @@ void binary_search_1(int arr[], int left, int right, int number) {
     return;
 }
 
-void binary_search_2(int arr[], int left, int right, int number) {
+void binary_search_2(int arr[], int left, int right, int number) { // acredito que esteja errado
     while (left <= right) {
         int middle = (left + right)/2;
 
