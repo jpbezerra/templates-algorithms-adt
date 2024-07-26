@@ -20,7 +20,7 @@ bool bellmanFord(int start) {
 
     for (int i = 0; i < numNode; i++) {
         for (auto j : adj[i]) {
-            if (dist[j] > (dist[i] + weight(i, j))) {
+            if (dist[j.first] > (dist[i] + weight(i, j.first))) {
                 cout << "Negative cycle detected!\n";
                 return true;
             }
