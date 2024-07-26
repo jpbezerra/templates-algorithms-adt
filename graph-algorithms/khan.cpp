@@ -33,7 +33,7 @@ void khan() {
     }
         
     if (result.size() != numNode) {
-        // o grafo tem pelo menos dois componentes conexos
+        // o grafo tem pelo menos dois componentes conexos ou um ciclo
         cout << "Fails." << '\n';
         return;
     }
