@@ -2,7 +2,7 @@ void kruskal() {
     Graph result(numNode);
     priority_queue<Edge> heap;
 
-    for (int i = 0; i < numNode; ++i) {
+    for (int i = 0; i < numNode; i++) {
         for (auto j:adj[i]) {
             heap.push({i, j.first, j.second});
         }
