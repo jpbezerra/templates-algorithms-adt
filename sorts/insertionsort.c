@@ -7,7 +7,7 @@ void insert_sort(int arr[], int size) {
 
         while (j >= 0 && arr[j] > v) {
             arr[j + 1] = arr[j];
-            j -= 1;
+            j--;
         }
         
         arr[j + 1] = v;
