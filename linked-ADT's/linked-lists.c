@@ -65,6 +65,7 @@ void remove(Linklist *l){
     
     l->curr->next = remove_link->next;
     free(remove_link);
+    l->cnt--;
 }
 
 void moveToStart(Linklist *l) {
