@@ -8,8 +8,6 @@ void swap(int *first, int *second) {
 
 void bubble_sort(int arr[], int size) {
     for (int i = 0; i <= size - 2; i++) {
-        int min = i;
-
         for (int j = 0; j <= size - 2 - i; j++) {
             if (arr[j + 1] < arr[j]) {
                 swap(&arr[j + 1], &arr[j]);
