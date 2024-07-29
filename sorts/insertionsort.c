@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void insert_sort(int arr[], int size) {
+void insertionSort(int arr[], int size) {
     for (int i = 1; i < size; i++) {
         int v = arr[i];
         int j = i - 1;
@@ -25,7 +25,7 @@ void print_array(int arr[], int size) {
 int main() {
     int arr[] = {64, 35, 78, 12, 91, 84, 85, 32, 67};
     int size = sizeof(arr)/sizeof(arr[0]);
-    insert_sort(arr, size);
+    insertionSort(arr, size);
     print_array(arr, size);
 
     return 0;
