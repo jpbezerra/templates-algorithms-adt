@@ -2,9 +2,9 @@
 
 void merge(int arr[], int left, int right, int temp[]) {
     for (int i = left; i <= right; i++) {
-        temp[i] = arr[i];    
+        temp[i] = arr[i];
     }
-    
+
     int middle = (left + right)/2;
 
     int i1 = left;
@@ -18,30 +18,28 @@ void merge(int arr[], int left, int right, int temp[]) {
         else if (i2 > right) {
             arr[curr] = temp[i1++];
         }
-        
+
         else if (temp[i1] <= temp[i2]) {
             arr[curr] = temp[i1++];
         }
-        
+
         else {
             arr[curr] = temp[i2++];
         }
-        
     }
-    
 }
 
-void merge_sort(int arr[], int left, int right, int temp[]) {
+void mergeSort(int arr[], int left, int right, int temp[]) {
     if (left < right) {
         int middle = (left + right)/2;
-        merge_sort(arr, left, middle, temp);
-        merge_sort(arr, middle + 1, right, temp);
+        mergeSort(arr, left, middle, temp);
+        mergeSort(arr, middle + 1, right, temp);
         merge(arr, left, right, temp);
     }
-    
+
 }
 
-void print_array(int arr[], int size) {
+void printArray(int arr[], int size) {
     for (int i = 0; i < size; i++) {
         printf("%d ", arr[i]);
     }
@@ -53,8 +51,8 @@ int main() {
     int arr[] = {64, 35, 78, 12, 91, 84, 85, 32, 67};
     int size = sizeof(arr)/sizeof(arr[0]);
     int temp[size];
-    merge_sort(arr, 0, size - 1, temp);
-    print_array(arr, size);
+    mergeSort(arr, 0, size - 1, temp);
+    printArray(arr, size);
 
     return 0;
 }
