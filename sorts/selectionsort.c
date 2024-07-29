@@ -6,7 +6,7 @@ void swap(int *first, int *second) {
     *second = temp;
 }
 
-void selection_sort(int arr[], int size) {
+void selectionSort(int arr[], int size) {
     for (int i = 0; i < size - 1; i++) {
         int min = i;
 
@@ -14,9 +14,8 @@ void selection_sort(int arr[], int size) {
             if (arr[j] < arr[min]) {
                 min = j;
             }
-            
         }
-        
+
         swap(&arr[i], &arr[min]);
     }
 }
@@ -32,7 +31,7 @@ void print_array(int arr[], int size) {
 int main() {
     int arr[] = {64, 35, 78, 12, 91, 84, 85, 32, 67};
     int size = sizeof(arr)/sizeof(arr[0]);
-    selection_sort(arr, size);
+    selectionSort(arr, size);
     print_array(arr, size);
 
     return 0;
