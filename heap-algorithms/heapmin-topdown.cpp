@@ -1,10 +1,6 @@
 #include <iostream>
 #include <vector>
 
-/*
-    a maioria das vezes onde eu coloquei currsize, talves seria melhor ter colocado capacity
-*/
-
 using namespace std;
 
 class MinHeap {
