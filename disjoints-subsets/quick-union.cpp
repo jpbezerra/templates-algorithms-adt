@@ -23,6 +23,10 @@ public:
     };
 
     int find(int start) {
+        /*
+            otimização: compressão de caminhos
+        */
+
         if (ppt[start] != start) {
             ppt[start] = find(ppt[start]);
         }
@@ -38,16 +42,31 @@ public:
             return;
         }
 
+        // queremos que o 'a' seja o conjunto maior e o 'b' seja o conjunto menor
+
+        /*
+            otimização: unir baseado no tamanho dos conjuntos
+        */
+
         if (sizes[a] < sizes[b]) {
             swap(a, b);
         }
 
         else if (sizes[a] == sizes[b]) {
+            /*
+                otimização: unir baseado nos ranques dos conjuntos
+            */
+
             if (rank[a] < rank[b]) {
                 swap(a, b);
             }
                 
             else if (rank[a] == rank[b]) {
+                /*
+                    otimização: unir baseado em ordenação
+                    (nesse caso, o menor número é juntado ao maior número)
+                */
+
                 if (a < b) {
                     swap(a, b);
                 }
