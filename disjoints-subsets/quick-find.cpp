@@ -32,6 +32,11 @@ public:
             return;
         }
 
+        /*
+            otimização: fazer com que root1 sempre seja a árvore de maior tamanho,
+            pois é menos custoso ligar uma árvore menor à uma árvore maior do que o contrário
+        */
+        
         if (sets[root1].size() < sets[root2].size()) {
             swap(sets[root1], sets[root2]);
         }
@@ -40,7 +45,7 @@ public:
             repr[i] = root1;
             sets[root1].push_back(i);
         }
-        
+
         sets[root2].clear();
         numSets--;
     };
