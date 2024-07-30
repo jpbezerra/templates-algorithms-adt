@@ -7,14 +7,14 @@ typedef struct link{
 
 } Link;
 
-Link *create_initial_link(Link *nextval) {
+Link *createInitialLink(Link *nextval) {
     Link *n = (Link*)malloc(sizeof(Link));
     n->next = nextval;
 
     return n;
 }
 
-Link *create_link(Link *nextval, int it) {
+Link *createLink(Link *nextval, int it) {
     Link *n = (Link*)malloc(sizeof(Link));
     n->data = it;
     n->next = nextval;
@@ -28,24 +28,24 @@ typedef struct {
 
 } Stack;
 
-Stack *create_stack() {
+Stack *createStack() {
     Stack *s = (Stack*)malloc(sizeof(Stack));
-    s->top = create_initial_link(NULL);
+    s->top = NULL;
     s->size = 0;
 
     return s;
 }
 
 void push(Stack *s, int it) {
-    s->top->next = create_link(s->top->next, it);
+    s->top = createLink(s->top, it);
     s->size++;
 }
 
 void pop(Stack *s) {
-    if (s->top->next == NULL) {
+    if (s->top == NULL) {
         return;
     }
-    
+
     int it = s->top->data; // we can return this
     Link *temp = s->top;
 
@@ -56,7 +56,12 @@ void pop(Stack *s) {
 }
 
 int topValue(Stack *s) {
-    return s->top->next->data;
+    if (s->top == NULL) {
+        printf("ERROR ");
+        return 404;
+    }
+
+    return s->top->data;
 }
 
 int length(Stack *s) {
@@ -64,7 +69,7 @@ int length(Stack *s) {
 }
 
 void clear(Stack *s) {
-    Link *temp = s->top->next;
+    Link *temp = s->top;
 
     while (temp != NULL) {
         Link *next = temp->next;
@@ -72,17 +77,19 @@ void clear(Stack *s) {
         free(temp);
         temp = next;
     }
-    
+
     s->top = NULL;
     s->size = 0;
 }
 
-void print_stack(Stack *s) {
-    Link *temp = s->top->next;
+void printStack(Stack *s) {
+    Link *temp = s->top;
 
     while (temp != NULL) {
-        printf("%d", temp->data);
+        printf("%d ", temp->data);
 
         temp = temp->next;
     }
+
+    printf("\n");
 }
