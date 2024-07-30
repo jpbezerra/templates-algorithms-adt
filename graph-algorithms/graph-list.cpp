@@ -156,7 +156,7 @@ public:
 
         /*
             nesse caso heap mínima, mas pode trocar para máxima
-            dependendo do contexto (não sei se queue normal funciona)
+            dependendo do contexto
         */
 
         priority_queue<int, vector<int>, greater<int>> heap;
