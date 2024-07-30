@@ -6,7 +6,7 @@ using namespace std;
 class Hash {
 private:
     int capacity;
-    int currSize;     
+    int currSize;
     int *HashTable;
 
     int HashKey(int value) { // for int elements
@@ -31,10 +31,8 @@ public:
 
     ~Hash() {
         free(HashTable);
-        printf("HASH TABLE FUCKING DESTROYED\n");
     }
-
-
+    
     void insert(int value) {
         int key = HashKey(value);
         int HashIndex = 0;
@@ -44,11 +42,11 @@ public:
             if (HashIndex == capacity) {
                 break;
             }
-            
+
             HashIndex++;
             ProbeFactor = LinearProbing(key, HashIndex);
         }
-        
+
 
         if (HashTable[ProbeFactor] == -1 || HashTable[ProbeFactor] == -2) {
             HashTable[ProbeFactor] = value;
@@ -57,20 +55,19 @@ public:
             printf("Value: %d, currsize: %d\n", HashTable[ProbeFactor], currSize);
 
             printf("Success!\n");
-            
+
         }
-        
+
         else {
             printf("Element not inserted.\n");
         }
     }
 
-
     void deletion(int value) { // deletando baseado no valor, dá pra deletar com base na key
         for (int i = 0; i < capacity; i++) {
             if (HashTable[i] == value) {
                 HashTable[i] = -2;
-                
+
                 printf("Element %d deleted at key number %d\n", value, i);
                 currSize--;
                 return;
@@ -91,24 +88,23 @@ public:
         }
 
         printf("Element not found!");
-        
+
         */
     }
-
 
     int search(int key) {
         if (HashTable[key] == -1) {
             printf("There are no elements that belongs to the key number %d\n", key);
-            
+
             return -1;
         }
-        
+
         if (HashTable[key] != -2) {
             printf("There is an element that belongs to the key number %d and it is at the right spot!!\n", key);
 
             return HashTable[key];
         }
-        
+
         printf("There was an element that belongs to the key number %d, but it was deleted. Let's check if there are at least one more then.\n", key);
 
         for (int i = 0; i < capacity; i++) {
@@ -122,18 +118,16 @@ public:
                 }
             }
         }
-        
+
         printf("Unfortunately there are no numbers that belongs to the key number %d\n", key);
-        
+
         return -1;
     }
-
-
+    
     int size() {
         return capacity;
     }
-
-
+    
     int current() {
         return currSize;
     }
@@ -156,7 +150,6 @@ public:
         currSize = 0;
     }
 };
-
 
 int main() {
     int HashSize = 10;
