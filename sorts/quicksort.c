@@ -36,20 +36,3 @@ void quickSort(int arr[], int left, int right) {
         quickSort(arr, split + 1, right);
     }
 }
-
-void printArray(int arr[], int size) {
-    for (int i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
-    }
-
-    printf("\nFinish!");
-}
-
-int main() {
-    int arr[] = {64, 35, 78, 12, 91, 84, 85, 32, 67};
-    int size = sizeof(arr)/sizeof(arr[0]);
-    quickSort(arr, 0, size - 1);
-    printArray(arr, size);
-
-    return 0;
-}
