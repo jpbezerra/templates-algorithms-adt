@@ -200,7 +200,7 @@ public:
         vector<int> pred;
         pred.resize(numNode, -1);
 
-        BFS(start);
+        BFS(start); // passar o vetor pred como parâmetro
 
         if (!getMark(dest)) {
             cout << "There isn't a path between " << start << " and " << dest << '\n';
