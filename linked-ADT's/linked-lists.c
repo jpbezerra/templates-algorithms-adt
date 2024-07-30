@@ -1,105 +1,128 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <iostream>
 
-using namespace std;
-
-typedef struct link {
+typedef struct link{
     int data;
     struct link *next;
 
 } Link;
 
 Link *createInitialLink(Link *nextval) {
-    Link *node = (Link*)malloc(sizeof(Link));
+    Link *n = (Link*)malloc(sizeof(Link));
+    n->next = nextval;
 
-    node->next = nextval;
-
-    return node;
+    return n;
 }
 
 Link *createLink(Link *nextval, int it) {
-    Link *node = (Link*)malloc(sizeof(Link));
+    Link *n = (Link*)malloc(sizeof(Link));
+    n->data = it;
+    n->next = nextval;
 
-    node->data = it;
-    node->next = nextval;
-
-    return node;
+    return n;
 }
 
 typedef struct {
-    Link *front;
-    Link *rear;
+    Link *head;
+    Link *tail;
+    Link *curr;
     int size;
 
-} Queue;
+} Linklist;
 
-Queue *createQueue() {
-    Queue *queue = (Queue*)malloc(sizeof(Queue));
+Linklist *createList() {
+    Linklist *l = (Linklist*)malloc(sizeof(Linklist));
+    l->curr = l->tail = l->head = createInitialLink(NULL);
 
-    queue->front = queue->rear = createInitialLink(NULL);
-    queue->size = 0;
+    l->size = 0;
 
-    return queue;
+    return l;
 }
 
-void enqueue(Queue *queue, int it) {
-    queue->rear->next = createLink(NULL, it);
-    queue->rear = queue->rear->next;
-    queue->size++;
+void insert(Linklist *l, int it) {
+    l->curr->next = createLink(l->curr->next, it);
+
+    if (l->tail == l->curr) {
+        l->tail = l->curr->next;
+    }
+
+    l->size++;
+
 }
 
-void dequeue(Queue *queue) {
-    if (queue->size == 0) {
-        printf("ERROR");
+void remove(Linklist *l){
+    if (l->curr->next == NULL) {
         return;
     }
 
-    int it = queue->front->next->data; // we can return this
+    Link *remove_link = l->curr->next;
 
-    Link *temp = queue->front->next;
+    int it = remove_link->data; // we can return this
 
-    queue->front->next = temp->next;
-
-    if (queue->front->next == NULL) {
-        queue->rear = queue->front;
+    if (l->tail == remove_link) {
+        l->tail = l->curr;
     }
 
-    free(temp);
-    queue->size--;
+    l->curr->next = remove_link->next;
+    free(remove_link);
+    l->size--;
 }
 
-void clear(Queue *q) {
-    Link *temp = q->front;
+void moveToStart(Linklist *l) {
+    l->curr = l->head;
+}
+
+void moveToEnd(Linklist *l) {
+    l->curr = l->tail;
+}
+
+void prev(Linklist *l) {
+    if (l->curr == l->head) {
+        return;
+    }
+
+    Link *temp = l->head;
+
+    while (temp->next != l->curr) {
+        temp = temp->next;
+    }
+
+    l->curr = temp;
+}
+
+void next(Linklist *l) {
+    if (l->curr != l->tail) {
+        l->curr = l->curr->next;
+    }
+}
+
+void clear(Linklist *l) {
+    Link *temp = l->head;
 
     while (temp != NULL) {
         Link *next = temp->next;
+
         free(temp);
         temp = next;
     }
 
-    q->front = q->rear = createInitialLink(NULL);
-    q->size = 0;
+    l->curr = l->tail = l->head = createInitialLink(NULL);
+    l->size = 0;
 }
 
-int frontValue(Queue *q) {
-    if (q->size == 0) {
-        printf("ERROR ");
-        return 404;
-    }
-
-    return q->front->next->data;
+int getValue(Linklist *l) {
+    return l->curr->next->data;
 }
 
-int length(Queue *q) {
-    return q->size;
+int length(Linklist *l) {
+    return l->size;
 }
 
-void printQueue(Queue *queue) {
-    Link *temp = queue->front->next;
+void printList(Linklist *list) {
+    Link *temp = list->head;
 
-    while (temp != NULL) {
-        printf("%d ", temp->data);
+    while (temp->next != NULL) {
+        printf("%d ", temp->next->data);
 
         temp = temp->next;
     }
