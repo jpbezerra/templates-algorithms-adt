@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
+
+using namespace std;
 
 typedef struct link {
     int data;
@@ -66,24 +69,8 @@ void dequeue(Queue *queue) {
     queue->size--;
 }
 
-void printQueue(Queue *queue) {
-    Link *temp = queue->front->next;
-
-    while (temp != NULL) {
-        if (temp->next != NULL) {
-            printf("%d ", temp->data);
-        }
-
-        else {
-            printf("%d\n", temp->data);
-        }
-
-        temp = temp->next;
-    }
-}
-
 void clear(Queue *q) {
-    Link *temp = q->front->next;
+    Link *temp = q->front;
 
     while (temp != NULL) {
         Link *next = temp->next;
@@ -96,9 +83,26 @@ void clear(Queue *q) {
 }
 
 int frontValue(Queue *q) {
-    return q->front->data;
+    if (q->size == 0) {
+        printf("ERROR ");
+        return 404;
+    }
+
+    return q->front->next->data;
 }
 
 int length(Queue *q) {
     return q->size;
+}
+
+void printQueue(Queue *queue) {
+    Link *temp = queue->front->next;
+
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+
+        temp = temp->next;
+    }
+
+    printf("\n");
 }
