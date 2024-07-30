@@ -38,21 +38,3 @@ void mergeSort(int arr[], int left, int right, int temp[]) {
     }
 
 }
-
-void printArray(int arr[], int size) {
-    for (int i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
-    }
-
-    printf("\nFinish!");
-}
-
-int main() {
-    int arr[] = {64, 35, 78, 12, 91, 84, 85, 32, 67};
-    int size = sizeof(arr)/sizeof(arr[0]);
-    int temp[size];
-    mergeSort(arr, 0, size - 1, temp);
-    printArray(arr, size);
-
-    return 0;
-}
