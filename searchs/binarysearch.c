@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+// needs to be sorted
+
 void binarySearchRecursive(int arr[], int left, int right, int number) {
     if (right >= left) {
         int middle = (left + right)/2;
@@ -42,15 +44,4 @@ void binarySearchNonRecursive(int arr[], int number) {
 
     printf("The number %d doesn't exists in this array!", number);
     return;
-}
-
-int main() {
-    int arr[] = {12, 32, 35, 64, 67, 78, 84, 85, 91}; // needs to be sorted
-    int size = sizeof(arr)/sizeof(arr[0]);
-    int number = 123;
-
-    binarySearchRecursive(arr, 0, size, number);
-    binarySearchNonRecursive(arr, number);
-
-    return 0;
 }
