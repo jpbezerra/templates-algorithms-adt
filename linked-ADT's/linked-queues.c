@@ -7,7 +7,7 @@ typedef struct link {
 
 } Link;
 
-Link *create_initial_link(Link *nextval) {
+Link *createInitialLink(Link *nextval) {
     Link *node = (Link*)malloc(sizeof(Link));
 
     node->next = nextval;
@@ -15,7 +15,7 @@ Link *create_initial_link(Link *nextval) {
     return node;
 }
 
-Link *create_more_links(Link *nextval, int it) {
+Link *createLink(Link *nextval, int it) {
     Link *node = (Link*)malloc(sizeof(Link));
 
     node->data = it;
@@ -31,17 +31,17 @@ typedef struct {
 
 } Queue;
 
-Queue *create_queue() {
+Queue *createQueue() {
     Queue *queue = (Queue*)malloc(sizeof(Queue));
 
-    queue->front = queue->rear = create_initial_link(NULL);
+    queue->front = queue->rear = createInitialLink(NULL);
     queue->size = 0;
 
     return queue;
 }
 
 void enqueue(Queue *queue, int it) {
-    queue->rear->next = create_more_links(NULL, it);
+    queue->rear->next = createLink(NULL, it);
     queue->rear = queue->rear->next;
     queue->size++;
 }
@@ -51,7 +51,7 @@ void dequeue(Queue *queue) {
         printf("ERROR");
         return;
     }
-    
+
     int it = queue->front->next->data; // we can return this
 
     Link *temp = queue->front->next;
@@ -66,18 +66,18 @@ void dequeue(Queue *queue) {
     queue->size--;
 }
 
-void print_queue(Queue *queue) {
+void printQueue(Queue *queue) {
     Link *temp = queue->front->next;
 
     while (temp != NULL) {
         if (temp->next != NULL) {
             printf("%d ", temp->data);
         }
-        
+
         else {
             printf("%d\n", temp->data);
         }
-        
+
         temp = temp->next;
     }
 }
@@ -90,8 +90,8 @@ void clear(Queue *q) {
         free(temp);
         temp = next;
     }
-    
-    q->front = q->rear = create_initial_link(NULL);
+
+    q->front = q->rear = createInitialLink(NULL);
     q->size = 0;
 }
 
