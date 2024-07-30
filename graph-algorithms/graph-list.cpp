@@ -259,7 +259,7 @@ public:
         }
 
         end:
-            // return dist[dest]; caso queiramos saber o pesor de ir de start -> dest
+            // return dist[dest]; caso queiramos saber o peso de ir de start -> dest
             for (auto i : dist) {
                 cout << i << " "; // distancia de start para cada vértice
             }
