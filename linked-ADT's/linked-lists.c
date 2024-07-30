@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct link{
+typedef struct link {
     int data;
     struct link *next;
 
