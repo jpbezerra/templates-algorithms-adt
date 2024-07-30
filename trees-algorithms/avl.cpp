@@ -28,7 +28,7 @@ private:
         if (numb1 >= numb2) {
             return numb1;
         }
-        
+
         return numb2;
     };
 
@@ -36,7 +36,7 @@ private:
         if (rt == NULL) {
             return -1;
         }
-        
+
         return rt->height;
     };
 
@@ -44,8 +44,8 @@ private:
         if (rt == NULL) {
             return 0;
         }
-        
-        return (height(rt->key) - height(rt->right));
+
+        return (height(rt->left) - height(rt->right));
     };
 
     AVLNode *right_rotate(AVLNode *rt) {
@@ -82,22 +82,22 @@ private:
         if (rt->key > key) {
             rt->left = inserthelp(rt->left, key);
         }
-        
+
         else {
             rt->right = inserthelp(rt->right, key);
         }
-        
+
         rt->height = 1 + max(height(rt->left), height(rt->right));
         int balance = getbalance(rt);
 
         if (balance < -1 && key >= rt->right->key) {
             return left_rotate(rt);
         }
-        
+
         else if (balance > 1 && key < rt->left->key) {
             return right_rotate(rt);
         }
-        
+
         else if (balance > 1 && key >= rt->left->key) {
             rt->left = left_rotate(rt->left);
             return right_rotate(rt);
@@ -107,7 +107,7 @@ private:
             rt->right = right_rotate(rt->right);
             return left_rotate(rt);
         }
-        
+
         return rt;
     };
 
@@ -115,7 +115,7 @@ private:
         if (!root) {
             return NULL;
         }
-        
+
         if (root->key > key) {
             return findhelp(root->left, key);
         }
@@ -133,7 +133,7 @@ private:
         if (root->left == NULL) {
             return root;
         }
-        
+
         return getmin(root->left);
     };
 
@@ -141,7 +141,7 @@ private:
         if (root->left == NULL) {
             return root->right;
         }
-        
+
         root->left = deletemin(root->left);
 
         return root;
@@ -151,24 +151,24 @@ private:
         if (root == NULL) {
             return NULL;
         }
-        
+
         if (root->key > key) {
             root->left = removehelp(root->left, key);
         }
-        
+
         else if (root->key < key) {
             root->right = removehelp(root->right, key);
         }
-        
+
         else {
             if (root->left == NULL) {
                 return root->right;
             }
-            
+
             else if (root->right == NULL) {
                 return root->left;
             }
-            
+
             else {
                 AVLNode *temp = getmin(root->right);
                 root->key = temp->key;
@@ -211,7 +211,7 @@ public:
             cout << "The element " << key << " wasn't found!" << endl;
             return;
         }
-        
+
         cout << "The element " << key << " was found!" << endl;
     };
 
@@ -227,7 +227,7 @@ public:
         }
 
         cout << "The element " << key << " wasn't found, so the element wasn't removed" << endl;
-        
+
         // return temp; // we can return the deleted element
     };
 
