@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <iostream>
 
 typedef struct link{
     int data;
@@ -98,7 +97,7 @@ void next(Linklist *l) {
 }
 
 void clear(Linklist *l) {
-    Link *temp = l->head->next;
+    Link *temp = l->head;
 
     while (temp != NULL) {
         Link *next = temp->next;
@@ -107,7 +106,7 @@ void clear(Linklist *l) {
         temp = next;
     }
 
-    l->curr = l->tail = l->head;
+    l->curr = l->tail = l->head = createInitialLink(NULL);
     l->size = 0;
 }
 
