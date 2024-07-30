@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <iostream>
 
 typedef struct link{
     int data;
@@ -8,14 +8,14 @@ typedef struct link{
 
 } Link;
 
-Link *create_initial_link(Link *nextval) {
+Link *createInitialLink(Link *nextval) {
     Link *n = (Link*)malloc(sizeof(Link));
     n->next = nextval;
 
     return n;
 }
 
-Link *create_link(Link *nextval, int it) {
+Link *createLink(Link *nextval, int it) {
     Link *n = (Link*)malloc(sizeof(Link));
     n->data = it;
     n->next = nextval;
@@ -27,27 +27,28 @@ typedef struct {
     Link *head;
     Link *tail;
     Link *curr;
-    int cnt;
+    int size;
 
 } Linklist;
 
-Linklist *create_list() {
+Linklist *createList() {
     Linklist *l = (Linklist*)malloc(sizeof(Linklist));
-    l->curr = l->tail = l->head = create_initial_link(NULL);
+    l->curr = l->tail = l->head = createInitialLink(NULL);
 
-    l->cnt = 0;
+    l->size = 0;
 
     return l;
 }
 
 void insert(Linklist *l, int it) {
-    l->curr->next = create_link(l->curr->next, it);
+    l->curr->next = createLink(l->curr->next, it);
 
     if (l->tail == l->curr) {
         l->tail = l->curr->next;
     }
-    
-    l->cnt++;
+
+    l->size++;
+
 }
 
 void remove(Linklist *l){
@@ -59,13 +60,13 @@ void remove(Linklist *l){
 
     int it = remove_link->data; // we can return this
 
-    if (remove_link->next == NULL) {
+    if (l->tail == remove_link) {
         l->tail = l->curr;
     }
-    
+
     l->curr->next = remove_link->next;
     free(remove_link);
-    l->cnt--;
+    l->size--;
 }
 
 void moveToStart(Linklist *l) {
@@ -77,20 +78,16 @@ void moveToEnd(Linklist *l) {
 }
 
 void prev(Linklist *l) {
-    if (l->head == NULL || l->curr == NULL) {
+    if (l->curr == l->head) {
         return;
     }
 
-    if (l->curr->next == l->head->next) {
-        return;
-    }
-    
-    Link *temp = l->head->next;
+    Link *temp = l->head;
 
-    while (temp->next != l->curr->next) {
+    while (temp->next != l->curr) {
         temp = temp->next;
     }
-    
+
     l->curr = temp;
 }
 
@@ -111,21 +108,25 @@ void clear(Linklist *l) {
     }
 
     l->curr = l->tail = l->head;
-    l->cnt = 0;
+    l->size = 0;
 }
 
 int getValue(Linklist *l) {
     return l->curr->next->data;
 }
 
-void print_list(Linklist *list) {
-    moveToStart(list);
+int length(Linklist *l) {
+    return l->size;
+}
 
-    Link *temp = list->curr->next;
+void printList(Linklist *list) {
+    Link *temp = list->head;
 
-    while (temp != NULL) {
-        printf("%d", temp->data);
+    while (temp->next != NULL) {
+        printf("%d ", temp->next->data);
 
         temp = temp->next;
-    }   
+    }
+
+    printf("\n");
 }
