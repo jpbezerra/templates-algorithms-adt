@@ -1,10 +1,6 @@
 #include <iostream>
 #include <vector>
 
-/*
-    a maioria das vezes onde eu coloquei currsize, talves seria melhor ter colocado capacity
-*/
-
 using namespace std;
 
 class MaxHeap {
@@ -22,7 +18,7 @@ public:
         currsize = 0;
 
         for (int i = 1; i < size + 1; i++) {
-            heapArr[i] = i + 1; // exemplo
+            heapArr[i] = i + 1; // example
             currsize++;
         }
 
@@ -83,7 +79,7 @@ public:
         }
     };
 
-    void printHeap() { // meu plano era printar como se fosse uma árvore
+    void printHeap() { 
         for (int i = 1; i <= currsize; i++) {
             cout << heapArr[i] << " ";
         }
