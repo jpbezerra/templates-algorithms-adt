@@ -1,14 +1,6 @@
 #include <iostream>
 #include <string>
 
-/*
-    Every time we type root->left or root->right or root->ket
-    we can change to getleft(), getright() and getkey()
-
-    If we want to use the root or the nodecount of the BST class we can
-    do the same logic above
-*/
-
 using namespace std;
 
 class BSTNode {
@@ -24,18 +16,6 @@ public:
 
         return node;
     };
-
-    int getkey() {
-        return key;
-    };
-
-    BSTNode *getleft() {
-        return left;
-    };
-
-    BSTNode *getright() {
-        return right;
-    }
 };
 
 class BST {
@@ -72,9 +52,7 @@ private:
             return &root->key;
         }
 
-        else {
-            return findhelp(root->right, key);
-        }
+        return findhelp(root->right, key);
     };
 
     BSTNode *getmin(BSTNode *root) {
@@ -116,12 +94,10 @@ private:
             else if (root->right == NULL) {
                 return root->left;
             }
-            
-            else {
-                BSTNode *temp = getmin(root->right);
-                root->key = temp->key;
-                root->right = deletemin(root->right);
-            }
+
+            BSTNode *temp = getmin(root->right);
+            root->key = temp->key;
+            root->right = deletemin(root->right);
         }
 
         return root;
@@ -176,7 +152,7 @@ public:
 
         cout << "The element " << key << " wasn't found, so the element wasn't removed" << endl;
         
-        // return temp; // we can return the deleted element
+        // return temp; -> we can return the deleted element
     };
 
     void preorder(BSTNode *rt) {
