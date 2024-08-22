@@ -1,2 +1,2 @@
 # templates-algorithms-adt
-A repository about algorithms, ADT and other stuff i've learned on Algorithms and Data Structures discipline (IF672 - UFPE)
+- Repositório destinado aos templates de algoritmos e estruturas de dados implementados durante a cadeira Algoritmos e Estruturas de Dados - IF672 (2024.1) da UFPE.
